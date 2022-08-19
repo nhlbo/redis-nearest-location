@@ -56,6 +56,10 @@ class Redis {
         )
         return result
     }
+
+    async deleteLocation(member) {
+        await this.client.ZREM(KEY, member)
+    }
 }
 
 export default Redis;

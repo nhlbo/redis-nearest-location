@@ -38,7 +38,24 @@ const locationController = {
         } catch (err) {
             next(err)
         }
-    }
+    },
+
+    async deleteLocation(req, res, next) {
+        try {
+            const {
+                label
+            } = req.body;
+
+            const redis = Redis.getObject();
+            redis.deleteLocation(label)
+            res.status(200).send({
+                exitcode: 0,
+                message: "Delete successfully"
+            })
+        } catch (err) {
+            next(err)
+        }
+    },
 }
 
 export default locationController;
